@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"
+	registryimage "github.com/hashicorp/packer-plugin-sdk/packer/registry/image"
 )
 
 func TestArtifact_Impl(t *testing.T) {
@@ -96,8 +97,8 @@ func TestArtifactState_hcpPackerRegistryMetadata(t *testing.T) {
 		},
 	}
 
-	actual := a.State("par.artifact.metadata")
-	expected := []hcpPackerRegistryImage{
+	actual := a.State(registryimage.ArtifactStateURI)
+	expected := []*registryimage.Image{
 		{
 			ImageID:        "foo",
 			ProviderName:   "aws",
